@@ -71,12 +71,13 @@ def train_model(X_train, y_train):
 
     # Multi-layer Perceptron (MLP)
     param_grid_mlp = {
-    'hidden_layer_sizes': [(50,50,50), (50,100,50), (100,)],
+    'hidden_layer_sizes': [(25, 50, 25), (50,100,50), (100,)],
     'activation': ['tanh', 'relu'],
     'solver': ['sgd', 'adam'],
-    'alpha': [0.0001, 0.05],
+    'alpha': [0.0001, 0.001, 0.01, 0.05, 0.1],
     'learning_rate': ['constant','adaptive'],
     }
+
     model_mlp = MLPClassifier(max_iter=1000, random_state=0)
     grid_model_mlp = GridSearchCV(model_mlp, param_grid_mlp, cv=kf)
     grid_model_mlp.fit(X_train, y_train)
